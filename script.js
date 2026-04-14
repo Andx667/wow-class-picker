@@ -157,6 +157,11 @@ function renderResults(topThree, answers) {
       <h4>Tradeoffs</h4>
       <ul>${tradeoffs}</ul>
       <p><strong>Next Step:</strong> ${entry.profile.nextSteps}</p>
+      <p class="guide-links"><strong>Guides:</strong>
+        <a href="${entry.profile.guides.wowhead}" target="_blank" rel="noopener">Wowhead</a>
+        &middot;
+        <a href="${entry.profile.guides.icyveins}" target="_blank" rel="noopener">Icy Veins</a>
+      </p>
       <p><strong>Playstyle Reminder:</strong> If this looks right on paper but feels wrong in-game, trust enjoyment over ranking.</p>
     `;
 

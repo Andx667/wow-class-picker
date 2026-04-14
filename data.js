@@ -53,7 +53,11 @@ const classProfiles = [
       "Ceiling gameplay includes timing-sensitive shot weaving",
       "Can feel repetitive if you dislike pet management"
     ],
-    nextSteps: "Start as BM with 4pc Beast Lord path from dungeons, then optimize shot rhythm and pet uptime."
+    nextSteps: "Start as BM with 4pc Beast Lord path from dungeons, then optimize shot rhythm and pet uptime.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/hunter/beast-mastery/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/beast-mastery-hunter-pve-dps-guide"
+    }
   },
   {
     id: "destro_warlock",
@@ -108,7 +112,11 @@ const classProfiles = [
       "Core rotation can feel simple over long sessions",
       "PvP options exist but are comp and spec dependent"
     ],
-    nextSteps: "Gear through spell hit/spell power benchmarks, then refine curse and pet utility discipline."
+    nextSteps: "Gear through spell hit/spell power benchmarks, then refine curse and pet utility discipline.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/warlock/destruction/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/destruction-warlock-pve-dps-guide"
+    }
   },
   {
     id: "fire_mage",
@@ -163,7 +171,11 @@ const classProfiles = [
       "Raid slots can be tighter than lock/hunter in many comps",
       "Performance heavily depends on group buffs and kill times"
     ],
-    nextSteps: "Prioritize hit cap and spell power upgrades, then optimize combust windows and utility usage."
+    nextSteps: "Prioritize hit cap and spell power upgrades, then optimize combust windows and utility usage.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/mage/fire/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/fire-mage-pve-dps-guide"
+    }
   },
   {
     id: "enhance_shaman",
@@ -218,7 +230,11 @@ const classProfiles = [
       "Totem management can feel busy",
       "Dual-weapon gearing can be awkward in some loot environments"
     ],
-    nextSteps: "Secure hit and weapon speed consistency early, then master totem timing per encounter."
+    nextSteps: "Secure hit and weapon speed consistency early, then master totem timing per encounter.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/shaman/enhancement/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/enhancement-shaman-pve-dps-guide"
+    }
   },
   {
     id: "resto_shaman",
@@ -273,7 +289,11 @@ const classProfiles = [
       "Solo speed is weaker than DPS-focused specs",
       "High utility responsibility in optimized groups"
     ],
-    nextSteps: "Build healing throughput basics first, then layer in totem swaps and utility discipline."
+    nextSteps: "Build healing throughput basics first, then layer in totem swaps and utility discipline.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/shaman/restoration/pve-healing",
+      icyveins: "https://www.icy-veins.com/tbc-classic/restoration-shaman-pve-healing-guide"
+    }
   },
   {
     id: "feral_druid",
@@ -328,7 +348,11 @@ const classProfiles = [
       "Pure cat DPS slots are less common than hybrid feral roles",
       "Performance quality depends on encounter role swapping"
     ],
-    nextSteps: "Prepare both bear and cat sets early, and communicate your role flexibility with raid leads."
+    nextSteps: "Prepare both bear and cat sets early, and communicate your role flexibility with raid leads.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/druid/feral/pve-tank",
+      icyveins: "https://www.icy-veins.com/tbc-classic/feral-druid-pve-tank-guide"
+    }
   },
   {
     id: "prot_paladin",
@@ -383,7 +407,11 @@ const classProfiles = [
       "Single-target tank optimization can be gear and setup sensitive",
       "Full-time raid tank slots are naturally limited"
     ],
-    nextSteps: "Build separate threat and mitigation sets, then align group composition for reliable threat support."
+    nextSteps: "Build separate threat and mitigation sets, then align group composition for reliable threat support.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/paladin/protection/pve-tank",
+      icyveins: "https://www.icy-veins.com/tbc-classic/protection-paladin-pve-tank-guide"
+    }
   },
   {
     id: "holy_paladin",
@@ -438,7 +466,11 @@ const classProfiles = [
       "Lower solo speed than DPS classes",
       "Playstyle can feel repetitive if you prefer high APM"
     ],
-    nextSteps: "Prioritize throughput and mana stats early, then refine cooldown and utility timing in raids."
+    nextSteps: "Prioritize throughput and mana stats early, then refine cooldown and utility timing in raids.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/paladin/holy/pve-healing",
+      icyveins: "https://www.icy-veins.com/tbc-classic/holy-paladin-pve-healing-guide"
+    }
   },
   {
     id: "arms_fury_warrior",
@@ -493,7 +525,11 @@ const classProfiles = [
       "Raid DPS slots are often competitive in TBC",
       "Feels weak early if undergeared or under-supported"
     ],
-    nextSteps: "Target hit/crit benchmarks fast and secure stable raid buffs before judging final performance."
+    nextSteps: "Target hit/crit benchmarks fast and secure stable raid buffs before judging final performance.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/warrior/fury/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/fury-warrior-pve-dps-guide"
+    }
   },
   {
     id: "priest_shadow",
@@ -548,7 +584,11 @@ const classProfiles = [
       "Raw DPS rankings are usually below top pure DPS specs",
       "Raid value depends on group composition planning"
     ],
-    nextSteps: "Lean into support value and group synergy rather than pure meter chasing."
+    nextSteps: "Lean into support value and group synergy rather than pure meter chasing.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/priest/shadow/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/shadow-priest-pve-dps-guide"
+    }
   },
   {
     id: "priest_holy_disc",
@@ -603,7 +643,11 @@ const classProfiles = [
       "Less solo comfort than DPS choices",
       "High awareness expectations in difficult encounters"
     ],
-    nextSteps: "Build strong healing fundamentals first, then branch into PvP-specific survival and control patterns."
+    nextSteps: "Build strong healing fundamentals first, then branch into PvP-specific survival and control patterns.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/priest/holy/pve-healing",
+      icyveins: "https://www.icy-veins.com/tbc-classic/holy-priest-pve-healing-guide"
+    }
   }
 ];
 
