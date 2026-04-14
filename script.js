@@ -166,8 +166,7 @@ function renderResults(topThree, answers) {
         &middot;
         <a href="${entry.profile.guides.icyveins}" target="_blank" rel="noopener">Icy Veins</a>
       </p>
-      <p><strong>Playstyle Reminder:</strong> If this looks right on paper but feels wrong in-game, trust enjoyment over ranking.</p>
-    `;
+      `;
 
     resultList.appendChild(card);
   });

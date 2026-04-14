@@ -10,6 +10,8 @@
   --fel: #75bc3b;
   --danger: #a64c3c;
   --link: #7fc6dd;
+  --link-hover: #a8dcec;
+  --link-visited: #72b8cf;
   --shadow: rgba(0, 0, 0, 0.35);
 }
 
@@ -23,6 +25,32 @@ body {
   background: radial-gradient(circle at top, #2a1e12 0%, var(--bg) 45%);
   color: var(--text);
   line-height: 1.45;
+}
+
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-color: rgba(127, 198, 221, 0.55);
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1.5px;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+a:visited {
+  color: var(--link-visited);
+  text-decoration-color: rgba(114, 184, 207, 0.6);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 2px solid rgba(216, 178, 106, 0.75);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 h1,
