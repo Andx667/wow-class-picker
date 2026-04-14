@@ -57,7 +57,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/hunter/beast-mastery/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/beast-mastery-hunter-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: 1, aoe: 1, gather: 2, instance: 2 }
   },
   {
     id: "destro_warlock",
@@ -116,7 +117,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/warlock/destruction/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/destruction-warlock-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: 1, aoe: 0, gather: 1, instance: 1 }
   },
   {
     id: "fire_mage",
@@ -175,7 +177,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/mage/fire/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/fire-mage-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: 0, aoe: 2, gather: 1, instance: 0 }
   },
   {
     id: "enhance_shaman",
@@ -234,7 +237,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/shaman/enhancement/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/enhancement-shaman-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: 1, aoe: 0, gather: 1, instance: 0 }
   },
   {
     id: "resto_shaman",
@@ -293,7 +297,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/shaman/restoration/pve-healing",
       icyveins: "https://www.icy-veins.com/tbc-classic/restoration-shaman-pve-healing-guide"
-    }
+    },
+    farmingBonus: { open: -2, aoe: -2, gather: -1, instance: -2 }
   },
   {
     id: "feral_druid",
@@ -352,7 +357,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/druid/feral/pve-tank",
       icyveins: "https://www.icy-veins.com/tbc-classic/feral-druid-pve-tank-guide"
-    }
+    },
+    farmingBonus: { open: 1, aoe: 1, gather: 2, instance: 1 }
   },
   {
     id: "prot_paladin",
@@ -411,7 +417,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/paladin/protection/pve-tank",
       icyveins: "https://www.icy-veins.com/tbc-classic/protection-paladin-pve-tank-guide"
-    }
+    },
+    farmingBonus: { open: 0, aoe: 3, gather: 0, instance: 3 }
   },
   {
     id: "holy_paladin",
@@ -470,7 +477,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/paladin/holy/pve-healing",
       icyveins: "https://www.icy-veins.com/tbc-classic/holy-paladin-pve-healing-guide"
-    }
+    },
+    farmingBonus: { open: -2, aoe: -2, gather: -1, instance: -2 }
   },
   {
     id: "arms_fury_warrior",
@@ -529,7 +537,8 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/warrior/fury/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/fury-warrior-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: -1, aoe: 0, gather: 0, instance: -1 }
   },
   {
     id: "priest_shadow",
@@ -588,30 +597,31 @@ const classProfiles = [
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/priest/shadow/pve-dps",
       icyveins: "https://www.icy-veins.com/tbc-classic/shadow-priest-pve-dps-guide"
-    }
+    },
+    farmingBonus: { open: 0, aoe: 0, gather: 0, instance: 0 }
   },
   {
-    id: "priest_holy_disc",
-    name: "Priest (Holy/Discipline Healer)",
-    tags: ["healer", "utility", "pvp"],
+    id: "priest_holy",
+    name: "Priest (Holy)",
+    tags: ["healer", "utility", "demand"],
     profile: {
       raid_dps: 0,
-      easy_invites: 8,
-      pvp_push: 9,
-      flexibility: 8,
+      easy_invites: 9,
+      pvp_push: 5,
+      flexibility: 7,
       ranged: 1,
       melee: 0,
       tank: 0,
       healer: 10,
-      hybrid: 8,
-      low: 5,
+      hybrid: 7,
+      low: 6,
       mid: 8,
-      high: 7,
-      arena_low: 4,
-      arena_mid: 8,
-      arena_high: 9,
-      slot_low: 7,
-      slot_mid: 8,
+      high: 6,
+      arena_low: 3,
+      arena_mid: 5,
+      arena_high: 6,
+      slot_low: 8,
+      slot_mid: 9,
       slot_high: 8,
       gear_low: 7,
       gear_mid: 8,
@@ -619,35 +629,96 @@ const classProfiles = [
       solo_low: 3,
       solo_mid: 5,
       solo_high: 4,
-      demand_low: 6,
-      demand_mid: 8,
-      demand_high: 8,
+      demand_low: 7,
+      demand_mid: 9,
+      demand_high: 9,
       pet_master: 0,
-      dark_caster: 2,
+      dark_caster: 1,
       holy_warrior: 0,
       totem_fighter: 0,
       shapeshifter: 0,
       weapon_master: 0,
-      arcane_control: 2,
-      shadow_support: 8,
+      arcane_control: 1,
+      shadow_support: 9,
       meta: 8,
       balance: 9,
-      fun: 8
+      fun: 7
     },
     strengths: [
-      "High-value healer toolkit for raids and arena",
-      "Strong cross-content flexibility",
-      "Good pick if you enjoy reactive gameplay and decision density"
+      "One of the most reliable raid healers in TBC",
+      "Strong throughput with Circle of Healing and raid cooldowns",
+      "High demand in progression content and structured guilds"
     ],
     tradeoffs: [
-      "Less solo comfort than DPS choices",
-      "High awareness expectations in difficult encounters"
+      "Weak solo capability and slow open-world play",
+      "Less flexible in PvP formats compared to Discipline"
     ],
-    nextSteps: "Build strong healing fundamentals first, then branch into PvP-specific survival and control patterns.",
+    nextSteps: "Focus on spell power and MP5 early, then refine cooldown timing and group assignment discipline.",
     guides: {
       wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/priest/holy/pve-healing",
       icyveins: "https://www.icy-veins.com/tbc-classic/holy-priest-pve-healing-guide"
-    }
+    },
+    farmingBonus: { open: -2, aoe: -2, gather: -1, instance: -2 }
+  },
+  {
+    id: "priest_discipline",
+    name: "Priest (Discipline)",
+    tags: ["healer", "pvp", "utility"],
+    profile: {
+      raid_dps: 0,
+      easy_invites: 7,
+      pvp_push: 10,
+      flexibility: 8,
+      ranged: 1,
+      melee: 0,
+      tank: 0,
+      healer: 9,
+      hybrid: 8,
+      low: 5,
+      mid: 7,
+      high: 7,
+      arena_low: 5,
+      arena_mid: 9,
+      arena_high: 10,
+      slot_low: 6,
+      slot_mid: 7,
+      slot_high: 7,
+      gear_low: 6,
+      gear_mid: 8,
+      gear_high: 7,
+      solo_low: 3,
+      solo_mid: 5,
+      solo_high: 4,
+      demand_low: 5,
+      demand_mid: 7,
+      demand_high: 8,
+      pet_master: 0,
+      dark_caster: 3,
+      holy_warrior: 0,
+      totem_fighter: 0,
+      shapeshifter: 0,
+      weapon_master: 0,
+      arcane_control: 3,
+      shadow_support: 9,
+      meta: 8,
+      balance: 9,
+      fun: 9
+    },
+    strengths: [
+      "Top-tier arena healer with unmatched control and survival tools",
+      "Power Word: Shield and Fear Ward make you invaluable in PvP",
+      "High skill ceiling with rewarding decision-making in arena"
+    ],
+    tradeoffs: [
+      "Raid healing output is lower than Holy in PvE content",
+      "Requires strong arena partners to fully shine"
+    ],
+    nextSteps: "Build resilience and spell power for arena, then master Fear Ward timing and shield rotation.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/priest/discipline/pvp",
+      icyveins: "https://www.icy-veins.com/tbc-classic/discipline-priest-pvp-guide"
+    },
+    farmingBonus: { open: -2, aoe: -2, gather: -1, instance: -2 }
   }
 ];
 
@@ -727,16 +798,4 @@ const weights = {
   mindset: 1.0
 };
 
-// Farming efficiency bonuses per class
-const farmingBonuses = {
-  bm_hunter: { open: 1, aoe: 1, gather: 2, instance: 2 },
-  fire_mage: { open: 0, aoe: 2, gather: 1, instance: 0 },
-  destro_warlock: { open: 1, aoe: 0, gather: 1, instance: 1 },
-  feral_druid: { open: 1, aoe: 1, gather: 2, instance: 1 },
-  prot_paladin: { open: 0, aoe: 3, gather: 0, instance: 3 },
-  enhance_shaman: { open: 1, aoe: 0, gather: 1, instance: 0 },
-  arms_fury_warrior: { open: -1, aoe: 0, gather: 0, instance: -1 },
-  holy_paladin: { open: -2, aoe: -2, gather: -1, instance: -2 },
-  resto_shaman: { open: -2, aoe: -2, gather: -1, instance: -2 },
-  priest_holy_disc: { open: -2, aoe: -2, gather: -1, instance: -2 }
-};
+

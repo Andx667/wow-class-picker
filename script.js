@@ -74,7 +74,7 @@ function getFarmData(profileEntry) {
     instance: 0
   };
 
-  const classBonus = farmingBonuses[profileEntry.id];
+  const classBonus = profileEntry.farmingBonus;
   if (classBonus) {
     bonus.open += classBonus.open || 0;
     bonus.aoe += classBonus.aoe || 0;
