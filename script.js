@@ -129,6 +129,41 @@ function getFarmData(profileEntry) {
   };
 }
 
+function getGearTips(profileEntry) {
+  const statPrioritiesBySpec = {
+    bm_hunter: ["Hit (to cap)", "Agility", "Attack Power", "Crit"],
+    surv_hunter: ["Agility", "Hit (to cap)", "Crit", "Attack Power"],
+    marks_hunter: ["Hit (to cap)", "Agility", "Attack Power", "Haste"],
+    destro_warlock: ["Spell Hit (to cap)", "Spell Power", "Crit", "Haste"],
+    affliction_warlock: ["Spell Hit (to cap)", "Spell Power", "Haste", "Crit"],
+    demo_warlock: ["Spell Hit (to cap)", "Spell Power", "Stamina", "Haste"],
+    fire_mage: ["Spell Hit (to cap)", "Spell Power", "Haste", "Crit"],
+    arcane_mage: ["Spell Hit (to cap)", "Spell Power", "Intellect", "Haste"],
+    frost_mage: ["Spell Hit (to cap)", "Spell Power", "Crit", "Haste"],
+    enhance_shaman: ["Hit (to cap)", "Expertise", "Attack Power", "Crit"],
+    elemental_shaman: ["Spell Hit (to cap)", "Spell Power", "Haste", "Crit"],
+    resto_shaman: ["+Healing", "Mp5", "Intellect", "Spell Crit"],
+    feral_druid: ["Defense/Survival", "Armor", "Agility", "Stamina"],
+    balance_druid: ["Spell Hit (to cap)", "Spell Power", "Haste", "Crit"],
+    resto_druid: ["+Healing", "Spirit", "Mp5", "Intellect"],
+    prot_paladin: ["Defense (uncrushable)", "Spell Power", "Stamina", "Block Value"],
+    holy_paladin: ["+Healing", "Intellect", "Mp5", "Spell Crit"],
+    ret_paladin: ["Hit (to cap)", "Strength", "Crit", "Attack Power"],
+    arms_fury_warrior: ["Hit (to cap)", "Expertise", "Strength", "Crit"],
+    prot_warrior: ["Defense (uncrittable)", "Stamina", "Block Value", "Avoidance"],
+    assass_rogue: ["Hit (to cap)", "Expertise", "Agility", "Attack Power"],
+    combat_rogue: ["Hit (to cap)", "Expertise", "Attack Power", "Haste"],
+    subtlety_rogue: ["Resilience (PvP)", "Agility", "Attack Power", "Crit"],
+    priest_shadow: ["Spell Hit (to cap)", "Spell Power", "Haste", "Crit"],
+    priest_holy: ["+Healing", "Spirit", "Mp5", "Intellect"],
+    priest_discipline: ["+Healing", "Intellect", "Mp5", "Spell Crit"],
+    holy_priest_buffer: ["+Healing", "Spirit", "Mp5", "Intellect"]
+  };
+
+  const stats = statPrioritiesBySpec[profileEntry.id] || ["Primary throughput stat", "Hit/Defense cap", "Sustain stat", "Utility stat"];
+  return `Prioritize ${stats.join(" > ")}.`;
+}
+
 function renderResults(topThree, answers, isLucky = false) {
   resultList.innerHTML = "";
 
@@ -143,6 +178,7 @@ function renderResults(topThree, answers, isLucky = false) {
 
     const strengths = entry.profile.strengths.map((item) => `<li>${item}</li>`).join("");
     const tradeoffs = entry.profile.tradeoffs.map((item) => `<li>${item}</li>`).join("");
+    const gearTip = getGearTips(entry.profile);
 
     let scoreAndWhy = "";
     if (!isLucky) {
@@ -167,7 +203,9 @@ function renderResults(topThree, answers, isLucky = false) {
       <ul>${strengths}</ul>
       <h4>Tradeoffs</h4>
       <ul>${tradeoffs}</ul>
-      <p><strong>Next Step:</strong> ${entry.profile.nextSteps}</p>
+      <h4>How to Gear</h4>
+      <p><strong>Stat Priority:</strong> ${gearTip}</p>
+      <p class="gear-note">Use the linked guides below to confirm exact caps and phase-specific upgrades.</p>
       <p class="guide-links"><strong>Guides:</strong>
         <a href="${entry.profile.guides.wowhead}" target="_blank" rel="noopener">Wowhead</a>
         &middot;
