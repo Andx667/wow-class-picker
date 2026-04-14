@@ -4,6 +4,28 @@ const resultSection = document.getElementById("results");
 const resultList = document.getElementById("result-list");
 const resetBtn = document.getElementById("reset-btn");
 const luckyBtn = document.getElementById("lucky-btn");
+const versionSigilEl = document.getElementById("version-sigil");
+
+// Version Sigil is a single source of truth for releases.
+// Update only this object when shipping changes:
+// 1) Bump patch for small edits
+// 2) Bump season for larger quiz/data changes
+// 3) Update date and notes summary
+const VERSION_SIGIL = Object.freeze({
+  track: "TBC.S03.P01",
+  codename: "TwinBlades",
+  date: "2026-04-14",
+  notes: "gear-uniqueness + warrior-spec-split"
+});
+
+function renderVersionSigil() {
+  if (!versionSigilEl) {
+    return;
+  }
+
+  const label = `Version Sigil: ${VERSION_SIGIL.track}-${VERSION_SIGIL.codename} | ${VERSION_SIGIL.date} | ${VERSION_SIGIL.notes}`;
+  versionSigilEl.textContent = label;
+}
 
 // Data (classProfiles, answerMap, weights, farmingBonuses) are imported from data.js
 
@@ -379,3 +401,5 @@ resetBtn.addEventListener("click", () => {
   resultSection.hidden = true;
   resultList.innerHTML = "";
 });
+
+renderVersionSigil();

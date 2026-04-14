@@ -389,6 +389,18 @@ summary {
   margin-bottom: 2rem;
 }
 
+.version-sigil {
+  display: inline-block;
+  margin: 0.35rem auto 0.1rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #6a4f2c;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #e7d7b2;
+  font-family: "Consolas", "Cascadia Code", monospace;
+  letter-spacing: 0.02em;
+}
+
 .invalid-note {
   color: #f1b09e;
   margin-top: 0.6rem;
