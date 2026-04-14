@@ -120,17 +120,21 @@ h1 {
   display: inline-block;
   margin-top: 0.3rem;
   text-decoration: none;
-  color: #1a1208;
-  background: linear-gradient(180deg, #f2cf8e, var(--gold-soft));
-  border: 1px solid #f0d199;
-  padding: 0.72rem 1.2rem;
+  color: #0d0906;
+  background: linear-gradient(180deg, #e5c885, #c7a23f);
+  border: none;
+  padding: 0.8rem 1.4rem;
   border-radius: 8px;
   font-weight: 700;
+  transition: all 160ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .cta:hover,
 .cta:focus-visible {
-  filter: brightness(1.06);
+  background: linear-gradient(180deg, #f2d799, #d8b26a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .play-you-love {
@@ -196,24 +200,38 @@ input[type="radio"] {
 
 button {
   appearance: none;
-  border: 1px solid #c99d55;
+  border: none;
   border-radius: 8px;
-  background: linear-gradient(180deg, #efc57f, #b48339);
-  color: #1a130a;
-  padding: 0.6rem 1rem;
+  background: linear-gradient(180deg, #d8b26a, #b8932e);
+  color: #0d0906;
+  padding: 0.7rem 1.2rem;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
+  transition: all 160ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 button:hover,
 button:focus-visible {
-  filter: brightness(1.05);
+  background: linear-gradient(180deg, #e5c885, #c7a23f);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 button.secondary {
-  background: linear-gradient(180deg, #84715a, #564736);
-  border-color: #907f6a;
-  color: #f2e8d6;
+  background: linear-gradient(180deg, #8fd94a, #6aa92e);
+  color: #0d1408;
+}
+
+button.secondary:hover,
+button.secondary:focus-visible {
+  background: linear-gradient(180deg, #a4e55f, #7ab83a);
 }
 
 .results-subtext {
