@@ -4,7 +4,21 @@ const resultSection = document.getElementById("results");
 const resultList = document.getElementById("result-list");
 const resetBtn = document.getElementById("reset-btn");
 const luckyBtn = document.getElementById("lucky-btn");
+const startQuizBtn = document.getElementById("start-quiz-btn");
+const langToggleBtn = document.getElementById("lang-toggle");
 const versionSigilEl = document.getElementById("version-sigil");
+const footerLinks = document.querySelectorAll(".footer-links a");
+
+let currentLanguage = localStorage.getItem("tbc-language") || "en";
+if (!window.TBC_LOCALES || !window.TBC_LOCALES[currentLanguage]) {
+  currentLanguage = "en";
+}
+
+let lastRenderState = {
+  topThree: null,
+  answers: null,
+  isLucky: false
+};
 
 // Version Sigil is a single source of truth for releases.
 // Update only this object when shipping changes:
@@ -23,8 +37,151 @@ function renderVersionSigil() {
     return;
   }
 
-  const label = `Version Sigil: ${VERSION_SIGIL.track}-${VERSION_SIGIL.codename} | ${VERSION_SIGIL.date} | ${VERSION_SIGIL.notes}`;
+  const label = `${tr("footer.versionSigil")}: ${VERSION_SIGIL.track}-${VERSION_SIGIL.codename} | ${VERSION_SIGIL.date} | ${VERSION_SIGIL.notes}`;
   versionSigilEl.textContent = label;
+}
+
+function tr(path) {
+  const locale = window.TBC_LOCALES?.[currentLanguage] || window.TBC_LOCALES?.en || {};
+  return path.split(".").reduce((acc, part) => {
+    if (acc && Object.prototype.hasOwnProperty.call(acc, part)) {
+      return acc[part];
+    }
+    return null;
+  }, locale) || path;
+}
+
+function setText(selector, key) {
+  const el = document.querySelector(selector);
+  if (el) {
+    el.textContent = tr(key);
+  }
+}
+
+function setLabel(name, value, key) {
+  const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
+  if (input && input.parentElement) {
+    input.parentElement.childNodes[input.parentElement.childNodes.length - 1].textContent = ` ${tr(key)}`;
+  }
+}
+
+function applyLocalization() {
+  document.documentElement.lang = currentLanguage;
+  document.title = tr("site.title");
+  localStorage.setItem("tbc-language", currentLanguage);
+
+  if (langToggleBtn) {
+    langToggleBtn.textContent = tr("language.switchTo");
+  }
+
+  setText(".eyebrow", "hero.eyebrow");
+  setText("h1", "site.title");
+  setText(".lead", "hero.lead");
+  setText("#start-quiz-btn", "hero.startQuiz");
+  setText("#lucky-btn", "hero.lucky");
+  setText(".play-you-love", "hero.reminder");
+
+  setText("#what-is-this", "intro.title");
+  setText(".intro p", "intro.body");
+  const introBullets = document.querySelectorAll(".intro ul li");
+  if (introBullets[0]) {
+    introBullets[0].textContent = tr("intro.bullets.0");
+  }
+  if (introBullets[1]) {
+    introBullets[1].textContent = tr("intro.bullets.1");
+  }
+  if (introBullets[2]) {
+    introBullets[2].textContent = tr("intro.bullets.2");
+  }
+
+  setText("#quiz-title", "quiz.title");
+  setText(".quiz-hint", "quiz.hint");
+  const legends = form.querySelectorAll("fieldset legend");
+  if (legends[0]) legends[0].textContent = tr("quiz.q1");
+  if (legends[1]) legends[1].textContent = tr("quiz.q2");
+  if (legends[2]) legends[2].textContent = tr("quiz.q3");
+  if (legends[3]) legends[3].textContent = tr("quiz.q4");
+  if (legends[4]) legends[4].textContent = tr("quiz.q5");
+  if (legends[5]) legends[5].textContent = tr("quiz.q6");
+  if (legends[6]) legends[6].textContent = tr("quiz.q7");
+  if (legends[7]) legends[7].textContent = tr("quiz.q8");
+  if (legends[8]) legends[8].textContent = tr("quiz.q9");
+  if (legends[9]) legends[9].textContent = tr("quiz.q10");
+  if (legends[10]) legends[10].textContent = tr("quiz.q11");
+
+  setLabel("goal", "raid_dps", "quiz.q1o1");
+  setLabel("goal", "easy_invites", "quiz.q1o2");
+  setLabel("goal", "pvp_push", "quiz.q1o3");
+  setLabel("goal", "flexibility", "quiz.q1o4");
+  setLabel("role", "ranged", "quiz.q2o1");
+  setLabel("role", "melee", "quiz.q2o2");
+  setLabel("role", "tank", "quiz.q2o3");
+  setLabel("role", "healer", "quiz.q2o4");
+  setLabel("role", "hybrid", "quiz.q2o5");
+  setLabel("complexity", "low", "quiz.q3o1");
+  setLabel("complexity", "mid", "quiz.q3o2");
+  setLabel("complexity", "high", "quiz.q3o3");
+  setLabel("arena", "low", "quiz.q4o1");
+  setLabel("arena", "mid", "quiz.q4o2");
+  setLabel("arena", "high", "quiz.q4o3");
+  setLabel("slotPressure", "low", "quiz.q5o1");
+  setLabel("slotPressure", "mid", "quiz.q5o2");
+  setLabel("slotPressure", "high", "quiz.q5o3");
+  setLabel("gear", "low", "quiz.q6o1");
+  setLabel("gear", "mid", "quiz.q6o2");
+  setLabel("gear", "high", "quiz.q6o3");
+  setLabel("solo", "low", "quiz.q7o1");
+  setLabel("solo", "mid", "quiz.q7o2");
+  setLabel("solo", "high", "quiz.q7o3");
+  setLabel("demand", "low", "quiz.q8o1");
+  setLabel("demand", "mid", "quiz.q8o2");
+  setLabel("demand", "high", "quiz.q8o3");
+  setLabel("gearUniqueness", "shared", "quiz.q9o1");
+  setLabel("gearUniqueness", "balanced", "quiz.q9o2");
+  setLabel("gearUniqueness", "unique", "quiz.q9o3");
+  setLabel("fantasy", "pet_master", "quiz.q10o1");
+  setLabel("fantasy", "dark_caster", "quiz.q10o2");
+  setLabel("fantasy", "holy_warrior", "quiz.q10o3");
+  setLabel("fantasy", "totem_fighter", "quiz.q10o4");
+  setLabel("fantasy", "shapeshifter", "quiz.q10o5");
+  setLabel("fantasy", "weapon_master", "quiz.q10o6");
+  setLabel("fantasy", "arcane_control", "quiz.q10o7");
+  setLabel("fantasy", "shadow_support", "quiz.q10o8");
+  setLabel("mindset", "meta", "quiz.q11o1");
+  setLabel("mindset", "balance", "quiz.q11o2");
+  setLabel("mindset", "fun", "quiz.q11o3");
+
+  setText(".actions button[type='submit']", "quiz.submit");
+  setText("#reset-btn", "quiz.reset");
+
+  setText("#results-title", "results.title");
+  setText(".results-subtext", "results.subtext");
+  const reminder = document.querySelector(".results-footer p");
+  if (reminder) {
+    reminder.innerHTML = `<strong>${tr("results.finalReminder")}</strong> ${tr("results.finalReminderText")}`;
+  }
+  setText(".back-top", "results.backTop");
+
+  setText("#faq-title", "faq.title");
+  const faqSummaries = document.querySelectorAll(".faq summary");
+  const faqAnswers = document.querySelectorAll(".faq details p");
+  if (faqSummaries[0]) faqSummaries[0].textContent = tr("faq.q1");
+  if (faqSummaries[1]) faqSummaries[1].textContent = tr("faq.q2");
+  if (faqSummaries[2]) faqSummaries[2].textContent = tr("faq.q3");
+  if (faqAnswers[0]) faqAnswers[0].textContent = tr("faq.a1");
+  if (faqAnswers[1]) faqAnswers[1].textContent = tr("faq.a2");
+  if (faqAnswers[2]) faqAnswers[2].textContent = tr("faq.a3");
+
+  setText(".site-footer > p:first-child", "footer.summary");
+  if (footerLinks[0]) footerLinks[0].textContent = tr("footer.github");
+  if (footerLinks[1]) footerLinks[1].textContent = tr("footer.coffee");
+  if (footerLinks[2]) footerLinks[2].textContent = tr("footer.license");
+
+  renderVersionSigil();
+
+  if (lastRenderState.topThree) {
+    renderResults(lastRenderState.topThree, lastRenderState.answers, lastRenderState.isLucky, true);
+  }
 }
 
 // Data (classProfiles, answerMap, weights, farmingBonuses) are imported from data.js
@@ -174,11 +331,11 @@ function getWhyReasons(profile, answers) {
   const reasons = [];
 
   const checks = [
-    ["goal", "Matches your primary objective"],
-    ["role", "Fits your preferred role"],
-    ["arena", "Aligns with your PvP priority"],
-    ["demand", "Lines up with your invite-demand expectations"],
-    ["mindset", "Fits your performance vs fun mindset"]
+    ["goal", tr("results.whyGoal")],
+    ["role", tr("results.whyRole")],
+    ["arena", tr("results.whyArena")],
+    ["demand", tr("results.whyDemand")],
+    ["mindset", tr("results.whyMindset")]
   ];
 
   for (const [question, label] of checks) {
@@ -237,21 +394,23 @@ function getFarmData(profileEntry) {
 
   let label = "Moderate";
   if (overall >= 75) {
-    label = "Excellent";
+    label = "excellent";
   } else if (overall >= 60) {
-    label = "Good";
+    label = "good";
   } else if (overall < 45) {
-    label = "Limited";
+    label = "limited";
+  } else {
+    label = "moderate";
   }
 
   return {
     overall,
-    label,
+    labelKey: label,
     breakdown: [
-      { name: "Open-world grind", value: Math.round(openWorld * 10) },
-      { name: "AoE pull farming", value: Math.round(aoeFarm * 10) },
-      { name: "Gathering routes", value: Math.round(gathering * 10) },
-      { name: "Solo-instance style", value: Math.round(soloInstance * 10) }
+      { nameKey: "results.farmOpen", value: Math.round(openWorld * 10) },
+      { nameKey: "results.farmAoe", value: Math.round(aoeFarm * 10) },
+      { nameKey: "results.farmGather", value: Math.round(gathering * 10) },
+      { nameKey: "results.farmInstance", value: Math.round(soloInstance * 10) }
     ]
   };
 }
@@ -289,10 +448,16 @@ function getGearTips(profileEntry) {
   };
 
   const stats = statPrioritiesBySpec[profileEntry.id] || ["Primary throughput stat", "Hit/Defense cap", "Sustain stat", "Utility stat"];
-  return `Prioritize ${stats.join(" > ")}.`;
+  return `${tr("messages.gearTipPrefix")} ${stats.join(" > ")}.`;
 }
 
-function renderResults(topThree, answers, isLucky = false) {
+function renderResults(topThree, answers, isLucky = false, skipScroll = false) {
+  lastRenderState = {
+    topThree,
+    answers,
+    isLucky
+  };
+
   resultList.innerHTML = "";
 
   topThree.forEach((entry, index) => {
@@ -301,7 +466,7 @@ function renderResults(topThree, answers, isLucky = false) {
 
     const farmData = getFarmData(entry.profile);
     const farmBreakdown = farmData.breakdown
-      .map((item) => `<li><span>${item.name}</span><strong>${item.value}/100</strong></li>`)
+      .map((item) => `<li><span>${tr(item.nameKey)}</span><strong>${item.value}/100</strong></li>`)
       .join("");
 
     const strengths = entry.profile.strengths.map((item) => `<li>${item}</li>`).join("");
@@ -314,27 +479,27 @@ function renderResults(topThree, answers, isLucky = false) {
         .map((item) => `<li>${item}</li>`)
         .join("");
       scoreAndWhy = `
-      <p class="result-score">Fit Score: ${entry.score}%</p>
-      <h4>Why It Fits</h4>
-      <ul>${why || "<li>Broad overall alignment with your answers</li>"}</ul>
+      <p class="result-score">${tr("results.fitScore")}: ${entry.score}%</p>
+      <h4>${tr("results.whyTitle")}</h4>
+      <ul>${why || `<li>${tr("results.whyFallback")}</li>`}</ul>
       `;
     }
 
     card.innerHTML = `
-      <span class="result-rank">#${index + 1}${isLucky ? " Random Pick" : " Match"}</span>
+      <span class="result-rank">#${index + 1} ${isLucky ? tr("results.rankRandom") : tr("results.rankMatch")}</span>
       <h3>${entry.profile.name}</h3>
       ${scoreAndWhy}
-      <p class="farm-score">Farm Score: ${farmData.overall}/100 <span>(${farmData.label})</span></p>
-      <h4>Farming Breakdown</h4>
+      <p class="farm-score">${tr("results.farmScore")}: ${farmData.overall}/100 <span>(${tr(`results.farm${farmData.labelKey.charAt(0).toUpperCase()}${farmData.labelKey.slice(1)}`)})</span></p>
+      <h4>${tr("results.farmBreakdown")}</h4>
       <ul class="farm-breakdown">${farmBreakdown}</ul>
-      <h4>TBC Strengths</h4>
+      <h4>${tr("results.strengths")}</h4>
       <ul>${strengths}</ul>
-      <h4>Tradeoffs</h4>
+      <h4>${tr("results.tradeoffs")}</h4>
       <ul>${tradeoffs}</ul>
-      <h4>How to Gear</h4>
-      <p><strong>Stat Priority:</strong> ${gearTip}</p>
-      <p class="gear-note">Use the linked guides below to confirm exact caps and phase-specific upgrades.</p>
-      <p class="guide-links"><strong>Guides:</strong>
+      <h4>${tr("results.gearTitle")}</h4>
+      <p><strong>${tr("results.statPriority")}:</strong> ${gearTip}</p>
+      <p class="gear-note">${tr("results.gearNote")}</p>
+      <p class="guide-links"><strong>${tr("results.guides")}:</strong>
         <a href="${entry.profile.guides.wowhead}" target="_blank" rel="noopener">Wowhead</a>
         &middot;
         <a href="${entry.profile.guides.icyveins}" target="_blank" rel="noopener">Icy Veins</a>
@@ -345,7 +510,9 @@ function renderResults(topThree, answers, isLucky = false) {
   });
 
   resultSection.hidden = false;
-  resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!skipScroll) {
+    resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 function getRandomSpecs(count = 3) {
@@ -364,7 +531,7 @@ function showInvalidNote() {
   clearInvalidNote();
   const note = document.createElement("p");
   note.className = "invalid-note";
-  note.textContent = "Please answer all required questions before generating results.";
+  note.textContent = tr("messages.invalid");
   form.appendChild(note);
 }
 
@@ -395,6 +562,18 @@ luckyBtn.addEventListener("click", () => {
   renderResults(randomSpecs, null, true);
 });
 
+startQuizBtn.addEventListener("click", () => {
+  const quizSection = document.getElementById("quiz");
+  if (quizSection) {
+    quizSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+
+langToggleBtn.addEventListener("click", () => {
+  currentLanguage = currentLanguage === "en" ? "de" : "en";
+  applyLocalization();
+});
+
 resetBtn.addEventListener("click", () => {
   form.reset();
   clearInvalidNote();
@@ -402,4 +581,4 @@ resetBtn.addEventListener("click", () => {
   resultList.innerHTML = "";
 });
 
-renderVersionSigil();
+applyLocalization();

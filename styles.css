@@ -95,6 +95,30 @@ button {
   padding: 3.2rem 1rem;
 }
 
+.hero-locale {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.4rem;
+}
+
+.lang-toggle {
+  appearance: none;
+  border: 1px solid #7a5e37;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.24);
+  color: #f3e2bc;
+  padding: 0.3rem 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  background: rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+
 .eyebrow {
   color: var(--muted);
   text-transform: uppercase;
