@@ -9,10 +9,14 @@ const resetBtn = document.getElementById("reset-btn");
 function collectAnswers() {
   const data = new FormData(form);
   const answers = {};
+  const optionalQuestions = new Set(["fantasy"]);
 
   for (const key of Object.keys(answerMap)) {
     const value = data.get(key);
     if (!value) {
+      if (optionalQuestions.has(key)) {
+        continue;
+      }
       return null;
     }
     answers[key] = value;
@@ -183,7 +187,7 @@ function showInvalidNote() {
   clearInvalidNote();
   const note = document.createElement("p");
   note.className = "invalid-note";
-  note.textContent = "Please answer every question before generating results.";
+  note.textContent = "Please answer all required questions before generating results.";
   form.appendChild(note);
 }
 
