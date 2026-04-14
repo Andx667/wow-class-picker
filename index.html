@@ -17,8 +17,8 @@
         Meta matters, but your long-term fun matters more.
       </p>
       <div class="hero-actions">
-        <a class="cta" href="#quiz">Start 2-Minute Quiz</a>
-        <button id="lucky-btn" class="secondary-cta">I'm Feeling Lucky!</button>
+        <button class="cta" href="#quiz">Start 2-Minute Quiz</button>
+        <button id="lucky-btn" class="cta">I'm Feeling Lucky!</button>
       </div>
       <p class="play-you-love">Reminder: play what you enjoy, not just what tops logs.</p>
     </div>
@@ -104,7 +104,14 @@
         </fieldset>
 
         <fieldset>
-          <legend>9) Which play fantasy sounds best? (Optional)</legend>
+          <legend>9) Gear uniqueness preference?</legend>
+          <label><input type="radio" name="gearUniqueness" value="shared" required> I am fine sharing gear with many classes/specs</label>
+          <label><input type="radio" name="gearUniqueness" value="balanced"> I want a balanced amount of competition</label>
+          <label><input type="radio" name="gearUniqueness" value="unique"> I prefer a more unique gear lane with less competition</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>10) Which play fantasy sounds best? (Optional)</legend>
           <label><input type="radio" name="fantasy" value="pet_master"> Pet commander / ranged specialist</label>
           <label><input type="radio" name="fantasy" value="dark_caster"> Dark caster / raid utility</label>
           <label><input type="radio" name="fantasy" value="holy_warrior"> Holy warrior / blessing support</label>
@@ -116,7 +123,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>10) Which statement fits you best?</legend>
+          <legend>11) Which statement fits you best?</legend>
           <label><input type="radio" name="mindset" value="meta" required> I want strongest outcomes, period.</label>
           <label><input type="radio" name="mindset" value="balance"> I want strong performance and fun.</label>
           <label><input type="radio" name="mindset" value="fun"> I care more about enjoying the class identity.</label>

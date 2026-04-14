@@ -1729,6 +1729,11 @@ const answerMap = {
     mid: "demand_mid",
     high: "demand_high"
   },
+  gearUniqueness: {
+    shared: "gear_shared",
+    balanced: "gear_balanced",
+    unique: "gear_unique"
+  },
   fantasy: {
     pet_master: "pet_master",
     dark_caster: "dark_caster",
@@ -1756,6 +1761,7 @@ const weights = {
   gear: 0.9,
   solo: 0.9,
   demand: 1.1,
+  gearUniqueness: 0.95,
   fantasy: 1.1,
   mindset: 1.0
 };

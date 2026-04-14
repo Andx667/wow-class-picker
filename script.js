@@ -26,6 +26,59 @@ function collectAnswers() {
   return answers;
 }
 
+function getGearUniquenessScore(profileId) {
+  const uniquenessBySpec = {
+    bm_hunter: 7,
+    surv_hunter: 8,
+    marks_hunter: 6,
+    destro_warlock: 7,
+    affliction_warlock: 7,
+    demo_warlock: 7,
+    fire_mage: 6,
+    arcane_mage: 6,
+    frost_mage: 6,
+    enhance_shaman: 5,
+    elemental_shaman: 6,
+    resto_shaman: 6,
+    feral_druid: 9,
+    balance_druid: 7,
+    resto_druid: 7,
+    prot_paladin: 8,
+    holy_paladin: 8,
+    ret_paladin: 6,
+    arms_warrior: 4,
+    fury_warrior: 4,
+    prot_warrior: 5,
+    assass_rogue: 5,
+    combat_rogue: 5,
+    subtlety_rogue: 5,
+    priest_shadow: 7,
+    priest_holy: 7,
+    priest_discipline: 7,
+    holy_priest_buffer: 7
+  };
+
+  return uniquenessBySpec[profileId] ?? 5;
+}
+
+function getGearUniquenessValue(profileEntry, answer) {
+  const uniqueness = getGearUniquenessScore(profileEntry.id);
+
+  if (answer === "shared") {
+    return 10 - uniqueness;
+  }
+
+  if (answer === "balanced") {
+    return Math.max(0, 10 - (Math.abs(uniqueness - 5) * 2));
+  }
+
+  if (answer === "unique") {
+    return uniqueness;
+  }
+
+  return 5;
+}
+
 function getSpecAdjustment(profileEntry, answers) {
   let bonus = 0;
 
@@ -75,9 +128,15 @@ function scoreProfile(profileEntry, answers) {
 
   Object.keys(answers).forEach((question) => {
     const answer = answers[question];
-    const profileKey = answerMap[question][answer];
     const weight = weights[question] || 1;
-    const value = profile[profileKey] || 0;
+    let value = 0;
+
+    if (question === "gearUniqueness") {
+      value = getGearUniquenessValue(profileEntry, answer);
+    } else {
+      const profileKey = answerMap[question][answer];
+      value = profile[profileKey] || 0;
+    }
 
     total += value * weight;
     max += 10 * weight;

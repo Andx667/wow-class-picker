@@ -143,6 +143,7 @@ h1 {
   flex-wrap: wrap;
   margin-top: 0.6rem;
   align-items: center;
+  justify-content: center;
 }
 
 .secondary-cta {
