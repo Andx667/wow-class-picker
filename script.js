@@ -3,6 +3,7 @@ const form = document.getElementById("class-quiz");
 const resultSection = document.getElementById("results");
 const resultList = document.getElementById("result-list");
 const resetBtn = document.getElementById("reset-btn");
+const luckyBtn = document.getElementById("lucky-btn");
 
 // Data (classProfiles, answerMap, weights, farmingBonuses) are imported from data.js
 
@@ -128,16 +129,12 @@ function getFarmData(profileEntry) {
   };
 }
 
-function renderResults(topThree, answers) {
+function renderResults(topThree, answers, isLucky = false) {
   resultList.innerHTML = "";
 
   topThree.forEach((entry, index) => {
     const card = document.createElement("article");
     card.className = "result-card";
-
-    const why = getWhyReasons(entry.profile.profile, answers)
-      .map((item) => `<li>${item}</li>`)
-      .join("");
 
     const farmData = getFarmData(entry.profile);
     const farmBreakdown = farmData.breakdown
@@ -147,13 +144,23 @@ function renderResults(topThree, answers) {
     const strengths = entry.profile.strengths.map((item) => `<li>${item}</li>`).join("");
     const tradeoffs = entry.profile.tradeoffs.map((item) => `<li>${item}</li>`).join("");
 
-    card.innerHTML = `
-      <span class="result-rank">#${index + 1} Match</span>
-      <h3>${entry.profile.name}</h3>
+    let scoreAndWhy = "";
+    if (!isLucky) {
+      const why = getWhyReasons(entry.profile.profile, answers)
+        .map((item) => `<li>${item}</li>`)
+        .join("");
+      scoreAndWhy = `
       <p class="result-score">Fit Score: ${entry.score}%</p>
-      <p class="farm-score">Farm Score: ${farmData.overall}/100 <span>(${farmData.label})</span></p>
       <h4>Why It Fits</h4>
       <ul>${why || "<li>Broad overall alignment with your answers</li>"}</ul>
+      `;
+    }
+
+    card.innerHTML = `
+      <span class="result-rank">#${index + 1}${isLucky ? " Random Pick" : " Match"}</span>
+      <h3>${entry.profile.name}</h3>
+      ${scoreAndWhy}
+      <p class="farm-score">Farm Score: ${farmData.overall}/100 <span>(${farmData.label})</span></p>
       <h4>Farming Breakdown</h4>
       <ul class="farm-breakdown">${farmBreakdown}</ul>
       <h4>TBC Strengths</h4>
@@ -173,6 +180,11 @@ function renderResults(topThree, answers) {
 
   resultSection.hidden = false;
   resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function getRandomSpecs(count = 3) {
+  const shuffled = [...classProfiles].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map((profile) => ({ profile, score: null }));
 }
 
 function clearInvalidNote() {
@@ -209,6 +221,12 @@ form.addEventListener("submit", (event) => {
     .slice(0, 3);
 
   renderResults(scored, answers);
+});
+
+luckyBtn.addEventListener("click", () => {
+  clearInvalidNote();
+  const randomSpecs = getRandomSpecs(3);
+  renderResults(randomSpecs, null, true);
 });
 
 resetBtn.addEventListener("click", () => {
