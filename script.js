@@ -26,7 +26,50 @@ function collectAnswers() {
   return answers;
 }
 
-function scoreProfile(profile, answers) {
+function getSpecAdjustment(profileEntry, answers) {
+  let bonus = 0;
+
+  if (profileEntry.id === "arms_warrior") {
+    if (answers.goal === "pvp_push") {
+      bonus += 6;
+    }
+    if (answers.arena === "high") {
+      bonus += 5;
+    }
+    if (answers.goal === "raid_dps") {
+      bonus -= 4;
+    }
+    if (answers.role === "melee") {
+      bonus += 2;
+    }
+    if (answers.mindset === "fun") {
+      bonus += 1;
+    }
+  }
+
+  if (profileEntry.id === "fury_warrior") {
+    if (answers.goal === "raid_dps") {
+      bonus += 6;
+    }
+    if (answers.mindset === "meta") {
+      bonus += 2;
+    }
+    if (answers.arena === "high") {
+      bonus -= 4;
+    }
+    if (answers.goal === "pvp_push") {
+      bonus -= 5;
+    }
+    if (answers.role === "melee") {
+      bonus += 2;
+    }
+  }
+
+  return bonus;
+}
+
+function scoreProfile(profileEntry, answers) {
+  const profile = profileEntry.profile;
   let total = 0;
   let max = 0;
 
@@ -40,7 +83,10 @@ function scoreProfile(profile, answers) {
     max += 10 * weight;
   });
 
-  return Math.round((total / max) * 100);
+  total += getSpecAdjustment(profileEntry, answers);
+
+  const adjusted = Math.round((total / max) * 100);
+  return Math.max(0, Math.min(100, adjusted));
 }
 
 function getWhyReasons(profile, answers) {
@@ -149,7 +195,8 @@ function getGearTips(profileEntry) {
     prot_paladin: ["Defense (uncrushable)", "Spell Power", "Stamina", "Block Value"],
     holy_paladin: ["+Healing", "Intellect", "Mp5", "Spell Crit"],
     ret_paladin: ["Hit (to cap)", "Strength", "Crit", "Attack Power"],
-    arms_fury_warrior: ["Hit (to cap)", "Expertise", "Strength", "Crit"],
+    arms_warrior: ["Resilience (PvP)", "Hit (PvP cap)", "Strength", "Crit"],
+    fury_warrior: ["Hit (to cap)", "Expertise", "Strength", "Crit"],
     prot_warrior: ["Defense (uncrittable)", "Stamina", "Block Value", "Avoidance"],
     assass_rogue: ["Hit (to cap)", "Expertise", "Agility", "Attack Power"],
     combat_rogue: ["Hit (to cap)", "Expertise", "Attack Power", "Haste"],
@@ -253,7 +300,7 @@ form.addEventListener("submit", (event) => {
   const scored = classProfiles
     .map((profile) => ({
       profile,
-      score: scoreProfile(profile.profile, answers)
+      score: scoreProfile(profile, answers)
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
