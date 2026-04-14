@@ -61,6 +61,66 @@ const classProfiles = [
     farmingBonus: { open: 1, aoe: 1, gather: 2, instance: 2 }
   },
   {
+    id: "surv_hunter",
+    name: "Hunter (Survival)",
+    tags: ["ranged", "pvp", "utility"],
+    profile: {
+      raid_dps: 7,
+      easy_invites: 7,
+      pvp_push: 9,
+      flexibility: 6,
+      ranged: 10,
+      melee: 2,
+      tank: 0,
+      healer: 0,
+      hybrid: 5,
+      low: 4,
+      mid: 7,
+      high: 7,
+      arena_low: 5,
+      arena_mid: 8,
+      arena_high: 8,
+      slot_low: 5,
+      slot_mid: 7,
+      slot_high: 7,
+      gear_low: 7,
+      gear_mid: 7,
+      gear_high: 6,
+      solo_low: 4,
+      solo_mid: 6,
+      solo_high: 7,
+      demand_low: 4,
+      demand_mid: 7,
+      demand_high: 8,
+      pet_master: 6,
+      dark_caster: 0,
+      holy_warrior: 0,
+      totem_fighter: 0,
+      shapeshifter: 0,
+      weapon_master: 3,
+      arcane_control: 3,
+      shadow_support: 0,
+      meta: 6,
+      balance: 8,
+      fun: 9
+    },
+    strengths: [
+      "Expose Weakness provides massive raid AP value in physical-heavy compositions",
+      "Top-tier arena and BG toolkit with Wyvern Sting and superior kiting",
+      "Agility stacking makes gearing intuitive and synergistic"
+    ],
+    tradeoffs: [
+      "Personal DPS is noticeably lower than Beast Mastery",
+      "Raid slot demand depends entirely on melee group composition"
+    ],
+    nextSteps: "Stack agility to maximise Expose Weakness value, then coordinate with melee group leads to confirm your utility slot.",
+    guides: {
+      wowhead: "https://www.wowhead.com/tbc-classic/guide/classes/hunter/survival/pve-dps",
+      icyveins: "https://www.icy-veins.com/tbc-classic/survival-hunter-pve-dps-guide"
+    },
+    farmingBonus: { open: 0, aoe: 0, gather: 1, instance: 1 }
+  },
+  {
     id: "destro_warlock",
     name: "Warlock (Destruction)",
     tags: ["ranged", "pve_dps", "demand"],
