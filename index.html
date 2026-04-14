@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBC Class Compass</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="eyebrow">World of Warcraft Classic: The Burning Crusade</p>
+      <h1>TBC Class Compass</h1>
+      <p class="lead">
+        Get a focused class recommendation for raids, PvP, heroics, and your available play time.
+        Meta matters, but your long-term fun matters more.
+      </p>
+      <a class="cta" href="#quiz">Start 2-Minute Quiz</a>
+      <p class="play-you-love">Reminder: play what you enjoy, not just what tops logs.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel intro" aria-labelledby="what-is-this">
+      <h2 id="what-is-this">What This Solves</h2>
+      <p>
+        Many TBC players get stuck between meta pressure and personal preference. This tool scores your priorities
+        against real TBC class realities: raid slot demand, spec flexibility, gearing pressure, PvP viability, and
+        rotation complexity.
+      </p>
+      <ul>
+        <li>Built for TBC roles and spec expectations.</li>
+        <li>Explains tradeoffs, not just scores.</li>
+        <li>Includes reminders to choose fun over burnout.</li>
+      </ul>
+    </section>
+
+    <section class="panel quiz" id="quiz" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">Class Match Quiz</h2>
+      <p class="quiz-hint">Answer all questions to calculate your best fits.</p>
+
+      <form id="class-quiz" novalidate>
+        <fieldset>
+          <legend>1) What matters most right now?</legend>
+          <label><input type="radio" name="goal" value="raid_dps" required> Top raid damage</label>
+          <label><input type="radio" name="goal" value="easy_invites"> Easy group invites</label>
+          <label><input type="radio" name="goal" value="pvp_push"> Arena/BG pushing</label>
+          <label><input type="radio" name="goal" value="flexibility"> Role flexibility (offspecs)</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>2) Preferred role most of the time?</legend>
+          <label><input type="radio" name="role" value="ranged" required> Ranged DPS</label>
+          <label><input type="radio" name="role" value="melee"> Melee DPS</label>
+          <label><input type="radio" name="role" value="tank"> Tanking</label>
+          <label><input type="radio" name="role" value="healer"> Healing</label>
+          <label><input type="radio" name="role" value="hybrid"> Mix it up depending on content</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>3) How much APM/rotation complexity do you enjoy?</legend>
+          <label><input type="radio" name="complexity" value="low" required> Low and steady</label>
+          <label><input type="radio" name="complexity" value="mid"> Medium</label>
+          <label><input type="radio" name="complexity" value="high"> High, with tight execution</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4) How important is Arena performance?</legend>
+          <label><input type="radio" name="arena" value="low" required> Not important</label>
+          <label><input type="radio" name="arena" value="mid"> Nice to have</label>
+          <label><input type="radio" name="arena" value="high"> Very important</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>5) How much raid competition for your slot are you okay with?</legend>
+          <label><input type="radio" name="slotPressure" value="low" required> Keep competition low</label>
+          <label><input type="radio" name="slotPressure" value="mid"> Some competition is fine</label>
+          <label><input type="radio" name="slotPressure" value="high"> I can fight for limited spots</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>6) Gear dependency tolerance?</legend>
+          <label><input type="radio" name="gear" value="low" required> I want to perform early</label>
+          <label><input type="radio" name="gear" value="mid"> Moderate dependency is okay</label>
+          <label><input type="radio" name="gear" value="high"> I can wait/scaling is fine</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>7) Solo farming and open-world comfort priority?</legend>
+          <label><input type="radio" name="solo" value="low" required> Low priority</label>
+          <label><input type="radio" name="solo" value="mid"> Balanced</label>
+          <label><input type="radio" name="solo" value="high"> Very important</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>8) Do you want to be highly desired in TBC raid comps?</legend>
+          <label><input type="radio" name="demand" value="low" required> Not a big deal</label>
+          <label><input type="radio" name="demand" value="mid"> Somewhat important</label>
+          <label><input type="radio" name="demand" value="high"> Yes, I want frequent invites</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>9) Which play fantasy sounds best?</legend>
+          <label><input type="radio" name="fantasy" value="pet_master" required> Pet commander / ranged specialist</label>
+          <label><input type="radio" name="fantasy" value="dark_caster"> Dark caster / raid utility</label>
+          <label><input type="radio" name="fantasy" value="holy_warrior"> Holy warrior / blessing support</label>
+          <label><input type="radio" name="fantasy" value="totem_fighter"> Totem fighter / team buffer</label>
+          <label><input type="radio" name="fantasy" value="shapeshifter"> Shapeshifter / adaptive kit</label>
+          <label><input type="radio" name="fantasy" value="weapon_master"> Weapon master / aggressive melee</label>
+          <label><input type="radio" name="fantasy" value="arcane_control"> Arcane control / burst windows</label>
+          <label><input type="radio" name="fantasy" value="shadow_support"> Shadow and discipline support</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>10) Which statement fits you best?</legend>
+          <label><input type="radio" name="mindset" value="meta" required> I want strongest outcomes, period.</label>
+          <label><input type="radio" name="mindset" value="balance"> I want strong performance and fun.</label>
+          <label><input type="radio" name="mindset" value="fun"> I care more about enjoying the class identity.</label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Show My Top 3 Classes</button>
+          <button type="button" id="reset-btn" class="secondary">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel results" id="results" aria-live="polite" aria-labelledby="results-title" hidden>
+      <h2 id="results-title">Your Best TBC Fits</h2>
+      <p class="results-subtext">Meta helps, but your consistency comes from enjoying your class.</p>
+      <div id="result-list" class="result-list"></div>
+      <div class="results-footer">
+        <p><strong>Final Reminder:</strong> play what you enjoy. The best class is the one you keep improving on week after week.</p>
+        <a href="#top" class="back-top">Back to top</a>
+      </div>
+    </section>
+
+    <section class="panel faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Quick Notes</h2>
+      <details>
+        <summary>Does this replace logs/sims?</summary>
+        <p>No. This helps narrow class choice based on your goals. Use logs/sims after you pick a direction.</p>
+      </details>
+      <details>
+        <summary>Why do some recommendations include tradeoffs?</summary>
+        <p>Because TBC class design is role-dependent. Better decisions come from seeing both strengths and pain points.</p>
+      </details>
+      <details>
+        <summary>Can off-meta choices still work?</summary>
+        <p>Yes. In competent groups, player skill and consistency often matter more than raw tier-list position.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>TBC Class Compass - Static site built with HTML, CSS, and minimal JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
