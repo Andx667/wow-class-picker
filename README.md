@@ -4,7 +4,7 @@ A lightweight class recommendation tool for World of Warcraft Classic: The Burni
 
 Answer 10 quick questions about your goals, playstyle, and priorities — and get a ranked top 3 class matches with fit scores, farming breakdowns, strengths, and tradeoffs.
 
-Live: https://andx667.github.io/wow-class-picker/
+Live: <https://andx667.github.io/wow-class-picker/>
 
 ## What it does
 
